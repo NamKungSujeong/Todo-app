@@ -1,14 +1,10 @@
 const express = require("express");
 const app = express();
-const PORT = 8080;
-
+const PORT = 8088;
+const todoRouter = require("./routes/todo");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
-app.get("/", (req, res) => {
-  res.send("hello");
-});
-
+app.use("/", todoRouter);
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });

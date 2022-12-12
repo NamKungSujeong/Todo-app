@@ -1,4 +1,5 @@
 const express = require("express");
+const { where } = require("sequelize");
 const { Todo } = require("../models");
 const router = express.Router();
 
@@ -25,6 +26,47 @@ router.post("/todo", async (req, res) => {
       title: req.body.title,
     });
     res.send(newTodo);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+// PATCH localhost:PORT/todo/:todoId - edit a specific todo (UPDATE)
+// 수정 성공 시 : true => res.send(true)
+// 수정 실패 시 : false => res.send(false)
+router.patch("/todo/:todoId", async (req, res) => {
+  try {
+    let [editTodo] = await Todo.update(
+      {
+        title: req.body.title,
+        done: req.body.done,
+      },
+      {
+        where: {
+          id: req.params.todoId,
+        },
+      }
+    );
+    if (!editTodo) {
+      return res.send(false);
+    }
+    res.send(true);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+router.delete("/todo/:todoId", async (req, res) => {
+  try {
+    let deleteTodo = await Todo.destroy({
+      where: {
+        id: req.params.todoId,
+      },
+    });
+    if (!deleteTodo) {
+      return res.send(false);
+    }
+    res.send(true);
   } catch (err) {
     res.send(err);
   }

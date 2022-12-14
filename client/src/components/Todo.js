@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const Todo = ({ todo, deleteTodo }) => {
-  const { id, title, done } = todo;
+  const { id, done } = todo;
   const [todoItem, setTodoItem] = useState(todo);
   const [readOnly, setReadOnly] = useState(true);
   // const [doneState, setDoneState] = useState(false);
@@ -34,12 +34,12 @@ const Todo = ({ todo, deleteTodo }) => {
 
   // checkbox 업데이트
   // done: true -> false , false ->
-  const editDoneHandler = () => {
+  const checkboxHandler = (e) => {
     // rest: id, done 정보
     const { done, ...rest } = todoItem;
 
     setTodoItem({
-      done: !todoItem.done,
+      done: e.target.checked,
       ...rest,
     });
   };
@@ -52,7 +52,7 @@ const Todo = ({ todo, deleteTodo }) => {
         name={`todo${id}`}
         value={`todo${id}`}
         defaultChecked={done}
-        onChange={editDoneHandler}
+        onChange={checkboxHandler}
       ></input>
       {/* <label htmlFor={`todo${id}`}>{title}</label> */}
       <input

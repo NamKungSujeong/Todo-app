@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
-import addImg from "../img/plus.png";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AddTodo = ({ add, todoNum }) => {
   // 사용자 입력을 받아올 객체
@@ -39,7 +40,7 @@ const AddTodo = ({ add, todoNum }) => {
           onKeyPress={onEnterKeyPress}
         ></input>
         <button type="button" onClick={buttonClick}>
-          <img src={addImg} alt="add"></img>
+          <FontAwesomeIcon icon={faPlus} size="2x" />
         </button>
       </div>
     </div>

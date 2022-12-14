@@ -1,5 +1,6 @@
 import { useState } from "react";
-import binImg from "../img/trash.png";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Todo = ({ todo, deleteTodo, todoNum }) => {
   const { id, done } = todo;
@@ -69,7 +70,7 @@ const Todo = ({ todo, deleteTodo, todoNum }) => {
             onKeyPress={enterKeyEventHandler}
           ></input>
           <button onClick={onDeleteBtnClick}>
-            <img src={binImg} alt="삭제"></img>
+            <FontAwesomeIcon icon={faTrashCan} size="2x" />
           </button>
         </div>
       ) : (

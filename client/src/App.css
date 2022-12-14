@@ -18,4 +18,5 @@
 .todoNum {
   display: flex;
   padding: 10px 24px;
+  font-weight: 700;
 }

@@ -36,6 +36,7 @@
 }
 
 .Todo {
+  padding: 0 10px;
   input {
     border: none;
     border-bottom: 1px solid $color-black;
@@ -47,7 +48,7 @@
   }
   .inputTodo {
     width: 20vw;
-    min-width: 280px;
+    min-width: 270px;
   }
 
   button {

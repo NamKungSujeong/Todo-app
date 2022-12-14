@@ -42,7 +42,7 @@ function App() {
       <div>
         <Header />
         <AddTodo add={add} />
-        <div className="todoNum">📍 {todoItems.length} todo </div>
+        <div className="todoNum">📍 {todoItems.length} todos </div>
         {todoItems.length > 0 ? (
           todoItems.map((todo) => {
             return <Todo key={todo.id} todo={todo} deleteTodo={deleteTodo} />;

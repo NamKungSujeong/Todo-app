@@ -13,7 +13,7 @@ const AddTodo = ({ add, todoNum }) => {
 
   const buttonClick = () => {
     // props로 받아온 addItem 함수 실행
-    if (todoItem.title.trim() === "") {
+    if (todoItem.title.trim().length === 0) {
       refInputs.current.focus();
       return;
     }
@@ -38,6 +38,7 @@ const AddTodo = ({ add, todoNum }) => {
           value={todoItem.title}
           onChange={(e) => setTodoItem({ title: e.target.value })}
           onKeyPress={onEnterKeyPress}
+          autoFocus
         ></input>
         <button type="button" onClick={buttonClick}>
           <FontAwesomeIcon icon={faPlus} size="2x" />

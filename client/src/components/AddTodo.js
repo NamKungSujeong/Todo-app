@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+import addImg from "../img/plus.png";
 
-const AddTodo = ({ add }) => {
+const AddTodo = ({ add, todoNum }) => {
   // 사용자 입력을 받아올 객체
   // (id, title, done에 대한 정보를 저장해야해서 객체 형태로!!)
   const [todoItem, setTodoItem] = useState({
     title: "",
   });
 
+  const refInputs = useRef();
+
   const buttonClick = () => {
     // props로 받아온 addItem 함수 실행
+    if (todoItem.title.trim() === "") {
+      refInputs.current.focus();
+      return;
+    }
     add(todoItem);
     setTodoItem({ title: "" }); // input 초기화
   };
@@ -21,17 +28,20 @@ const AddTodo = ({ add }) => {
   };
 
   return (
-    <div className="AddTodo">
-      <input
-        type="text"
-        placeholder="Add your new Todo"
-        value={todoItem.title}
-        onChange={(e) => setTodoItem({ title: e.target.value })}
-        onKeyPress={onEnterKeyPress}
-      ></input>
-      <button type="button" onClick={buttonClick}>
-        ADD
-      </button>
+    <div>
+      <div className="AddTodo">
+        <input
+          ref={refInputs}
+          type="text"
+          placeholder="Add your new Todo"
+          value={todoItem.title}
+          onChange={(e) => setTodoItem({ title: e.target.value })}
+          onKeyPress={onEnterKeyPress}
+        ></input>
+        <button type="button" onClick={buttonClick}>
+          <img src={addImg} alt="add"></img>
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 import { useState, useRef } from "react";
 import AddTodo from "./components/AddTodo";
 import Todo from "./components/Todo";
+import "./App.css";
+import "./styles/Todo.scss";
+import Header from "./components/Header";
 
 function App() {
   // const [inputTitle, setTitle] = useState("");
@@ -34,13 +37,20 @@ function App() {
     setTodoItems(result);
     // console.log(targetTodo);
   };
-
   return (
     <div className="App">
-      <AddTodo add={add} />
-      {todoItems.map((todo) => {
-        return <Todo key={todo.id} todo={todo} deleteTodo={deleteTodo} />;
-      })}
+      <div>
+        <Header />
+        <AddTodo add={add} />
+        <div className="todoNum">📍 {todoItems.length} todo </div>
+        {todoItems.length > 0 ? (
+          todoItems.map((todo) => {
+            return <Todo key={todo.id} todo={todo} deleteTodo={deleteTodo} />;
+          })
+        ) : (
+          <div>Todo를 추가해 주세요</div>
+        )}
+      </div>
     </div>
   );
 }

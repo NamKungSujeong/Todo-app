@@ -1,11 +1,12 @@
 import { useState } from "react";
+import binImg from "../img/trash.png";
 
-const Todo = ({ todo, deleteTodo }) => {
+const Todo = ({ todo, deleteTodo, todoNum }) => {
   const { id, done } = todo;
   const [todoItem, setTodoItem] = useState(todo);
   const [readOnly, setReadOnly] = useState(true);
   // const [doneState, setDoneState] = useState(false);
-
+  console.log(todoNum);
   const onDeleteBtnClick = () => {
     deleteTodo(todoItem);
   };
@@ -46,24 +47,34 @@ const Todo = ({ todo, deleteTodo }) => {
 
   return (
     <div className="Todo">
-      <input
-        type="checkbox"
-        id={`todo${id}`}
-        name={`todo${id}`}
-        value={`todo${id}`}
-        defaultChecked={done}
-        onChange={checkboxHandler}
-      ></input>
-      {/* <label htmlFor={`todo${id}`}>{title}</label> */}
-      <input
-        type="text"
-        value={todoItem.title}
-        onChange={editEventHandler}
-        readOnly={readOnly}
-        onClick={offReadOnlyMode}
-        onKeyPress={enterKeyEventHandler}
-      ></input>
-      <button onClick={onDeleteBtnClick}>DELETE</button>
+      {todoNum !== 0 ? (
+        <div>
+          <input
+            type="checkbox"
+            id={`todo${id}`}
+            className="check"
+            name={`todo${id}`}
+            value={`todo${id}`}
+            defaultChecked={done}
+            onChange={checkboxHandler}
+          ></input>
+          <label htmlFor={`todo${id}`}></label>
+          <input
+            className="inputTodo"
+            type="text"
+            value={todoItem.title}
+            onChange={editEventHandler}
+            readOnly={readOnly}
+            onClick={offReadOnlyMode}
+            onKeyPress={enterKeyEventHandler}
+          ></input>
+          <button onClick={onDeleteBtnClick}>
+            <img src={binImg} alt="삭제"></img>
+          </button>
+        </div>
+      ) : (
+        <div> 남은 Todo가 없습니다.</div>
+      )}
     </div>
   );
 };
